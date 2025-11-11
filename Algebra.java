@@ -84,7 +84,7 @@ public class Algebra {
 		{
 			for (int i=0; i<x2;i++)
 			{
-				count = count + x1;
+				count = plus(count, x1);
 			}
 		}
 		else
