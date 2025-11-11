@@ -88,15 +88,17 @@ public class Anagram {
 	public static String preProcess(String str) {
 		str = str.toLowerCase();
 		String newWord = "";
-		if (str == null || str == "")
-		{
-			return "";
-		}
+
 		for (int i=0; i<str.length(); i++)
 		{
-			if (Character.isLetter(str.charAt(i)))
+			char c = str.charAt(i);
+			if (Character.isLetter(c))
 			{
 				newWord = newWord + str.charAt(i);
+			}
+			else if (c == ' ')
+			{
+				newWord = newWord + ' ';
 			}
 		}
 		return newWord;
