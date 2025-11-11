@@ -28,8 +28,12 @@ public class LoanCalc {
 	// Computes the ending balance of a loan, given the loan amount, the periodical
 	// interest rate (as a percentage), the number of periods (n), and the periodical payment.
 	private static double endBalance(double loan, double rate, int n, double payment) {	
-		// Replace the following statement with your code
-		return 0;
+		double balance = loan;
+		for (int i=1; i<=n; i++)
+		{
+			balance = (balance - payment) * (1.0 + (rate/100));
+		}
+		return balance;
 	}
 	
 	// Uses sequential search to compute an approximation of the periodical payment
@@ -38,8 +42,16 @@ public class LoanCalc {
 	// the number of periods (n), and epsilon, the approximation's accuracy
 	// Side effect: modifies the class variable iterationCounter.
     public static double bruteForceSolver(double loan, double rate, int n, double epsilon) {
-		// Replace the following statement with your code
-		return 0;
+		double payment = loan / n;
+		double balance = endBalance(loan, rate, n, payment);
+
+		while (balance > 0) 
+		{
+			payment = payment + epsilon;
+			balance = endBalance(loan, rate, n, payment);
+			iterationCounter++;
+		}
+		return payment;
     }
     
     // Uses bisection search to compute an approximation of the periodical payment 
@@ -48,7 +60,39 @@ public class LoanCalc {
 	// the number of periods (n), and epsilon, the approximation's accuracy
 	// Side effect: modifies the class variable iterationCounter.
     public static double bisectionSolver(double loan, double rate, int n, double epsilon) {  
-        // Replace the following statement with your code
-		return 0;
+        iterationCounter = 0;
+		double L = loan / n;
+    	double fL = endBalance(loan, rate, n, L);
+		double H = loan;
+    	
+		double fH = endBalance(loan, rate, n, H);
+    	while (fH >= 0.0) 
+		{
+        	H = H * 2.0;
+        	fH = endBalance(loan, rate, n, H);
+        	iterationCounter++;
+		}
+		while ((H - L) > epsilon) 
+		{
+        	double g = 0.5 * (L + H);
+        	double fg = endBalance(loan, rate, n, g);
+        	if (Math.abs(fg) <= Math.max(1.0, epsilon)) 
+			{
+            	return g; 
+        	}
+
+        	if (fg > 0.0) 
+			{   
+            	L = g;
+            	fL = fg;
+        	} 
+			else 
+			{          
+            	H = g;
+            	fH = fg;
+        	}
+        	iterationCounter++;
+    }
+    return 0.5 * (L + H);
     }
 }
