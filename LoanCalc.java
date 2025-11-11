@@ -76,10 +76,6 @@ public class LoanCalc {
 		{
         	double g = 0.5 * (L + H);
         	double fg = endBalance(loan, rate, n, g);
-        	if (Math.abs(fg) <= Math.max(1.0, epsilon)) 
-			{
-            	return g; 
-        	}
 
         	if (fg > 0.0) 
 			{   
