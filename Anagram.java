@@ -1,4 +1,7 @@
 /** Functions for checking if a given string is an anagram. */
+
+import java.util.Random;
+
 public class Anagram {
 	public static void main(String args[]) {
 		// Tests the isAnagram function.
@@ -97,7 +100,16 @@ public class Anagram {
 	// Returns a random anagram of the given string. The random anagram consists of the same
 	// characters as the given string, re-arranged in a random order. 
 	public static String randomAnagram(String str) {
-		String random = new StringBuilder(str).reverse().toString();
-		return random;
+		StringBuilder newWord = new StringBuilder(str);
+		Random rand = new Random();
+
+		for (int i=newWord.length()-1; i>0; i--)
+		{
+			int j = rand.nextInt(i + 1);
+			char temp = newWord.charAt(i);
+			newWord.setCharAt(i, newWord.charAt(j));
+			newWord.setCharAt(j, temp);
+		}
+		return newWord.toString();
 	}
 }
