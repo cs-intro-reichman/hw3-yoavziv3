@@ -131,7 +131,7 @@ public class Algebra {
         ImageIcon image = new ImageIcon("C:\\Users\\yoavz\\OneDrive\\Desktop/try.jpg");
         JOptionPane.showMessageDialog(
             null,
-            "x2 cannot be zero!",
+            "אם היית מבין משהו במתמטיקה",
             "Error",
             JOptionPane.ERROR_MESSAGE,
             image
