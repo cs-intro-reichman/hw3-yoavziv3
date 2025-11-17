@@ -96,10 +96,6 @@ public class Anagram {
 			{
 				newWord = newWord + str.charAt(i);
 			}
-			else if (c == ' ')
-			{
-				newWord = newWord + ' ';
-			}
 		}
 		return newWord;
 	} 
